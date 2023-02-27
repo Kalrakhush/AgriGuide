@@ -24,6 +24,67 @@ def predict_api():
     print(output[0])
     return jsonify(str(output[0]))
 
+@app.route('/predict',methods=['POST'])
+def predict():
+    data=[float(x) for x in request.form.values()]
+    final_input=sc.transform(np.array(data).reshape(1,-1))
+    print(final_input)
+    output=clsmodel.predict(final_input)[0]
+
+    
+    if(int(output)==0):
+        prediction = "apple"
+    elif(int(output)==1):
+        prediction = "banana"
+    elif(int(output)==2):
+        prediction = "blackgram"
+    elif(int(output)==3):
+        prediction = "chickpea"
+    elif(int(output)==4):
+        prediction = "coconut"
+    elif(int(output)==5):
+        prediction = "coffee"
+    elif(int(output)==6):
+        prediction = "cotton"
+    elif(int(output)==7):
+        prediction = "grapes"
+    elif(int(output)==8):
+        prediction = "jute"
+    elif(int(output)==9):
+        prediction = "kidneybeans"
+    elif(int(output)==10):
+        prediction = "lentil"
+    elif(int(output)==11):
+        prediction = "maize"
+    elif(int(output)==12):
+        prediction = "mango"
+    elif(int(output)==13):
+        prediction = "mothbeans"
+    elif(int(output)==14):
+        prediction = "mulberry"
+    elif(int(output)==15):
+        prediction = "mungbean"
+    elif(int(output)==16):
+        prediction = "muskmelon"
+    elif(int(output)==17):
+        prediction = "orange"
+    elif(int(output)==18):
+        prediction = "papaya"
+    elif(int(output)==19):
+        prediction = "pigeonpeas"
+    elif(int(output)==20):
+        prediction = "pomegranate"
+    elif(int(output)==21):
+        prediction = "potato"
+    elif(int(output)==22):
+        prediction = "ragi"
+    elif(int(output)==23):
+        prediction = "rice"
+    elif(int(output)==24):
+        prediction = "watermelon"                                                                
+
+    return render_template("home.html",prediction_text="The prediction is {}".format(prediction))
+
 
 if __name__=="__main__":
     app.run(debug=True)
