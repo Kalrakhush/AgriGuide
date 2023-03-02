@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
   <title>Detection using Metrologicial Conditions</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -12,10 +13,15 @@
 
 <body>
   <header>
+   
     <!-- nav bar -->
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg bg-light" >
       <div class="container-fluid">
-        <a class="navbar-brand" href="/">AgriGuide</a>
+        <a class="navbar-brand" >
+          <div class="logo-image">
+                <img src="C:\Users\khush\OneDrive\Desktop\AgriGuide\static\logo.khush.jpg" width="70" height="70" class="img-fluid">
+          </div>
+       </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
           aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -24,7 +30,7 @@
           <ul class="navbar-nav">
 
             <li class="nav-item">
-              
+              Crop Recommendation In Just One Click!
             </li>
             <li class="nav-item">
               
@@ -35,23 +41,41 @@
         </div>
       </div>
     </nav>
-
-    
-
     <div id="intro" class="container-fluid view ">
-      <h1 class="text-center text-capitalize pt-5">Crop Recommendation in just one Click!</h1>
+      <h2 class="text-center text-capitalize pt-5">Crop Recommendation in just one Click!</h2>
       <hr class="w-75 mx-auto pt-5">
       <div class="row mb-5">
         <div class="col-lg-6 col-md-6 col-12 my-auto">
-          <img src="https://www.agrifarming.in/wp-content/uploads/2019/12/Comp2-14.jpg" width="600" height="400" class="float-left" >
+          <div id="leftbox">
+            <h3>निर्देश</h3>
+              <ul>
+                <li>प्रयोगशाला में मिट्टी का नमूना लें|</li> 
+                <li>मृदा स्वास्थ्य कार्ड प्राप्त करें|</li>
+                <li>उस कार्ड से पोटेशियम(K), फास्फोरस(P), नाइट्रोजन(N) और पीएच(ph) का पता लगाएं|</li>
+                <li>नीचे दिए गए संबंधित बॉक्स में मान भरें|</li> 
+             </ul>
+         </div>
+          <div id="middlebox">
+          <h3>ਹਦਾਇਤਾਂ</h3>
+          <ul>
+            <li>ਮਿੱਟੀ ਦਾ ਨਮੂਨਾ ਲੈਬ ਵਿੱਚ ਲੈ ਜਾਓ|</li> 
+            <li>ਮਿੱਟੀ ਸਿਹਤ ਕਾਰਡ ਲਵੋ|</li>
+            <li>ਉਸ ਕਾਰਡ ਤੋਂ ਪੋਟਾਸ਼ੀਅਮ(K), ਫਾਸਫੋਰਸ(P), ਨਾਈਟ੍ਰੋਜਨ(N) ਅਤੇ ph ਦਾ ਪਤਾ ਲਗਾਓ|</li>
+            <li>ਹੇਠਾਂ ਦਿੱਤੇ ਅਨੁਸਾਰੀ ਬਕਸਿਆਂ ਵਿੱਚ ਮੁੱਲ ਭਰੋ|</li> 
+          </ul>
+         </div>
+          
+          <img   src= "https://img95.lovepik.com/photo/40106/7716.gif_wh300.gif" alt="GeeksforGeeks logo" width="600" height="300"> 
           
         </div>
+        
         <div class="col-lg-6 col-md-6 col-12">
 
           <form action="{{ url_for('predict')}}" method="POST">
             <div class="form-group">
+
               <!-- TODO : Year to accept only year date picker -->
-              <br><br><br>
+              <br><br><br><br><br><br>
               <label for="concave points_mean">Nitrogen Level(N)</label>
               <input class="form-control" type="number" id="Nitrogen Level(N)" name="Nitrogen Level(N)"
                 required="required" placeholder="Nitrogen Level(N)">
@@ -71,19 +95,43 @@
               <input class="form-control" type="number" id="ph Level" name="ph Level" required="required"
                 placeholder="ph Level">
             </div>
-            
-            <button type="submit" class="btn btn-danger">Predict Crop</button>
-          </form>
+            <br>
+            <button type="submit" class="btn btn-danger" onclick="myFunction()">Predict Crop</button>
+           </form>
+         </div>
         </div>
       </div>
     </div>
   </header>
+  
+  <body style="background-color:ivory;">
+    <svg id="cursor" width="20" height="20">
+      <defs>
+        <linearGradient id="gradient" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="white" ></stop>
+          <stop offset="100%" stop-color="white"></stop>          
+        </linearGradient>      
+      </defs>
+      <circle r="07" cx="10" cy="10" fill="none"></circle>
+      <line x1="0" y1="0" x2="20" y2="20"></line>
+      <line x1="0" y1="20" x2="20" y2="0"></line>
+    </svg>
+    
+  
 
   <!-- script -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
     crossorigin="anonymous"></script>
-    <center><em><b>{{prediction_text}}</b></em></center>
+    
+    
+    <script>
+      function myFunction() {
+        alert("{{prediction_text}}");
+      }
+      </script>
+
+   
 </body>
 
 </html>
