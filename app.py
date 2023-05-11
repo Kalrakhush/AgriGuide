@@ -7,15 +7,24 @@ app=Flask(__name__)
 
 ##Load the model
 clsmodel=pickle.load(open('clsmodel.pkl','rb'))
+Diseases=pickle.load(open('Plant Diseases.pkl','rb'))
 sc=pickle.load(open('scaling.pkl','rb'))
 
-@app.route('/')
+@app.route("/images_mat")
+def diseases():
+    return render_template('images_mat.html')
+
+@app.route("/home")
 def home():
     return render_template('home.html')
 
-@app.route('/predict_api',methods=['POST'])
+@app.route('/')
+def index():
+    return render_template('index.html')
 
+@app.route('/predict_api',methods=['POST'])
 def predict_api():
+    
     data=request.json['data'] 
     print(data)
     print(np.array(list(data.values())).reshape(1,-1))
@@ -29,7 +38,7 @@ def predict():
     data=[float(x) for x in request.form.values()]
     final_input=sc.transform(np.array(data).reshape(1,-1))
     print(final_input)
-    output=clsmodel.predict(final_input)[0]
+    output=clsmodel.predict(final_input)[0] 
 
     
     if(int(output)==0):
@@ -83,8 +92,28 @@ def predict():
     elif(int(output)==24):
         prediction = "watermelon"                                                                
 
-    return render_template("home.html",prediction_text="The prediction is {}".format(prediction))
+    return render_template(r"C:\Users\khush\OneDrive\Desktop\AgriGuide\templates\Crop_prediction\home.html",prediction_text="The prediction is {}".format(prediction))
 
+@app.route('/predict_diseases',methods=['POST'])
+def predict_diseases():
+    '''
+    For Rendering results on html gui'''
+
+    int_features=[int(x) for x in request.form.values()]
+    final_features=[np.array(int_features)]
+    output=Diseases.predict(final_features) 
+
+    if(int(output)==0):
+        prediction = "Blast"
+    elif(int(output)==1):
+        prediction = "Hispa"
+    elif(int(output)==2):
+        prediction = "False Smut"
+    elif(int(output)==3):
+        prediction = "Stem Rot"    
+
+
+    return render_template(r"C:\Users\khush\OneDrive\Desktop\AgriGuide\templates\materological_conditions\images_mat.html",prediction_text=prediction)
 
 if __name__=="__main__":
     app.run(debug=True)
