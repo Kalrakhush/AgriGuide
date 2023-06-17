@@ -12,11 +12,11 @@ sc=pickle.load(open('scaling.pkl','rb'))
 
 @app.route("/images_mat")
 def diseases():
-    return render_template('images_mat.html')
+    return render_template('materological_conditions/images_mat.html')
 
 @app.route("/home")
 def home():
-    return render_template('home.html')
+    return render_template('materological_conditions/home.html')
 
 @app.route('/')
 def index():
@@ -92,7 +92,8 @@ def predict():
     elif(int(output)==24):
         prediction = "watermelon"                                                                
 
-    return render_template(r"C:\Users\khush\OneDrive\Desktop\AgriGuide\templates\Crop_prediction\home.html",prediction_text="The prediction is {}".format(prediction))
+    # return render_template('materological_conditions/home.html',prediction_text="The prediction is {}".format(prediction))
+    return jsonify(prediction_text="The prediction is {}".format(prediction));
 
 @app.route('/predict_diseases',methods=['POST'])
 def predict_diseases():
@@ -113,7 +114,7 @@ def predict_diseases():
         prediction = "Stem Rot"    
 
 
-    return render_template(r"C:\Users\khush\OneDrive\Desktop\AgriGuide\templates\materological_conditions\images_mat.html",prediction_text=prediction)
+    return render_template('materological_conditions/images_mat.html',prediction_text=prediction)
 
 if __name__=="__main__":
     app.run(debug=True)
