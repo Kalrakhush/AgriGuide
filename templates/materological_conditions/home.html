@@ -112,27 +112,7 @@
     </div>
   </header>
   
-  <body style="background-color:ivory;">
-    <svg id="cursor" width="20" height="20">
-      <defs>
-        <linearGradient id="gradient" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="white" ></stop>
-          <stop offset="100%" stop-color="white"></stop>          
-        </linearGradient>      
-      </defs>
-      <circle r="07" cx="10" cy="10" fill="none"></circle>
-      <line x1="0" y1="0" x2="20" y2="20"></line>
-      <line x1="0" y1="20" x2="20" y2="0"></line>
-    </svg>
     
-    <div id="overlay-div" onclick="disappear()" style="display: none; z-index: 2; margin: auto; position: absolute; background-color: rgb(233, 233, 251); width: 25%; height: 25%;position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);">
-    <p id="alert-fill" style="text-align: center; 
-                              font-size: 40px;"></p>
-    </div>
 
   <!-- script -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
@@ -142,16 +122,9 @@
     
     <script>
       function myFunction() {
-        const popup = document.getElementById('overlay-div');
-        const alert_text = document.getElementById('alert-fill');
-        popup.style.display = 'block';
-        alert_text.innerText = "{{prediction_text}}";
-        // alert("{{prediction_text}}");
+        alert("{{prediction_text}}");
       }
-      function disappear() {
-        const popup = document.getElementById('overlay-div');
-        popup.style.display = "none";
-      }
+      
       </script>
 
    

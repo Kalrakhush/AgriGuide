@@ -92,8 +92,8 @@ def predict():
     elif(int(output)==24):
         prediction = "watermelon"                                                                
 
-    # return render_template('materological_conditions/home.html',prediction_text="The prediction is {}".format(prediction))
-    return jsonify(prediction_text="The prediction is {}".format(prediction));
+    return render_template('materological_conditions/home.html',prediction_text="The prediction is {}".format(prediction))
+    
 
 @app.route('/predict_diseases',methods=['POST'])
 def predict_diseases():
@@ -114,7 +114,7 @@ def predict_diseases():
         prediction = "Stem Rot"    
 
 
-    return render_template('materological_conditions/images_mat.html',prediction_text=prediction)
+    return render_template('materological_conditions/images_mat.html',prediction_text="The prediction is {}".format(prediction))
 
 if __name__=="__main__":
     app.run(debug=True)
